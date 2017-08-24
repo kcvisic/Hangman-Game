@@ -26,7 +26,7 @@
                     </button>
                     <a class="navbar-brand" style="background-color: #444444; color: white; href=" # ">Hangman-Game</a>
                 </div>
-                <div class="collapse navbar-collapse " id="bs-example-navbar-collapse-1 ">
+                <div class="collapse navbar-collapse " id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav navbar-right ">
                         <li class="active "><a href="index.html ">Instructions<span class="sr-only ">(current)</span></a></li>
                        
@@ -34,53 +34,35 @@
                 </div>
             </div>
         </nav>     
-        <div class="jumbotron ">
-            <div class="container ">
-    
-            <img src="assets/images/man.png " id="picture ">
-            </div>
-        </div>
-           
-        <div class="container">
-            <div calss="row">
-                <div class="col-md-4" style="margin-left:40%">
-                <h5>Press Any Key to Start!</h5>
-                </div>
-            </div>
-             <div calss="row">
-                 <div class="col-md-4" style="margin-left:40%">
-                <h5>Wins:</h5>
-                </div>
-             </div>
-              <div calss="row">
-                 <div class="col-md-4" style="margin-left:20%">
-               <span id="words">_ </span>
-                </div>
-             </div>
-            <div calss="row">
-                 <div class="col-md-4" style="margin-left:40%">
-                <h5>Remaining:</h5>
-                </div>
-            </div>
-             <div calss="row">
-                 <div class="col-md-4" style="margin-left:40%">
-               <h5> Guessed:</h5>
-               <span id="lettersGuessed"></span>
-                </div>
-             </div>
 
-            
-
+        <div class="container ">
+            <div class="row ">
+                <div class="col-md-4 " style="margin-left:40%">
+                <h5 id="welcomeMsg">Press Any Key to Start!</h5>
+                </div>
+            </div>
+             <div class="row ">
+                 <div class="col-md-4 " style="margin-left:40%">
+                <h5>Wins: <span id="wins"></span></h5>
+                </div>
+             </div>
+              <div class="row ">
+                 <div class="col-md-4 " style="margin-left:40% ">
+                   <h5>Secret Phrase:</h5>
+                  <span id="displayString"></span>
+                </div>
+             </div>
+            <div class="row ">
+                 <div class="col-md-4 " style="margin-left:40% ">
+                <h5>Guesses Left: <span id="guessesLeft"></span></h5>
+                </div>
+            </div>
+             <div class="row ">
+                 <div class="col-md-4 " style="margin-left:40% ">
+               <h5>Letters Guessed: <span id="lettersGuessed"></span></h5>
+                </div>
+             </div>
         </div>        
-         
-           
-    
-        
-            
-
-
-
-
     </div>      
 </body>
 </html>

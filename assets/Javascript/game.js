@@ -21,9 +21,12 @@ var phrases = ["Early bird gets the worm",
     "A chip on your sholder"
 ];
 
-for (var i = 0; i < phrases.length; i++) {
-    console.log(phrases[i].toLowerCase());
-}
+var secretPhrase = "";
+var usersKeyArray = [];
+var userMisses = 0;
+var wins = 0;
+var gameStarted = false;
+var allowedMisses = 5;
 
 function getRandomArbitrary(min, max) {
     var randomNum = Math.random() * (max - min) + min;
@@ -34,10 +37,7 @@ function returnRandElement(array) {
     var randomNum = getRandomArbitrary(0, array.length);
     var returnRandE = array[randomNum];
     return returnRandE
-
 }
-
-returnRandElement(phrases)
 
 function createDisplayString(hiddenWord, usersKeyArray) {
 
@@ -48,10 +48,10 @@ function createDisplayString(hiddenWord, usersKeyArray) {
         var hiddenCharacter = hiddenWord[i];
 
         var existsInUserKeyArray = usersKeyArray.indexOf(hiddenCharacter);
-       
+
         if (hiddenCharacter === " ") {
             toDisplay += " ";
-            
+
         } else if (existsInUserKeyArray === -1) {
             toDisplay += "_ "
         } else {
@@ -59,9 +59,36 @@ function createDisplayString(hiddenWord, usersKeyArray) {
             toDisplay += hiddenCharacter + " ";
         }
 
-        
+
 
     }
     return toDisplay
 }
-createDisplayString(returnRandElement(phrases), [])
+
+function updateGameUI() {
+
+    var guessesLeft = allowedMisses - userMisses;
+    var displayString = createDisplayString(secretPhrase, usersKeyArray);
+
+    $("#displayString").text(displayString);
+    $("#wins").text(wins);
+    $("#lettersGuessed").text(usersKeyArray);
+    $("#guessesLeft").text(guessesLeft);
+
+    if (gameStarted === true) {
+        ("#welcomeMsg").css("display", "none");
+    }
+}
+
+function handleKeyPress(event) {
+    var key = event.key;
+
+    // WRITE ALL OF YOUR GAME LOGIC HERE
+
+    updateGameUI();
+}
+
+$(function() {
+    $(document).keyup(handleKeyPress);
+    updateGameUI();
+})
