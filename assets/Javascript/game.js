@@ -1,4 +1,7 @@
-var phrases = ["Early bird gets the worm",
+
+var app = {}
+
+app.phrases = ["Early bird gets the worm",
     "Read between lines", "I can eat a horse",
     "Cat got your tongue", "One in million",
     "Easer said then done", "Add insult to injury",
@@ -21,12 +24,12 @@ var phrases = ["Early bird gets the worm",
     "A chip on your sholder"
 ];
 
-var secretPhrase = "";
-var usersKeyArray = [];
-var userMisses = 0;
-var wins = 0;
-var gameStarted = false;
-var allowedMisses = 5;
+app.secretPhrase = "";
+app.usersKeyArray = [];
+app.userMisses = 0;
+app.wins = 0;
+app.gameStarted = false;
+app.allowedMisses = 5;
 
 function getRandomArbitrary(min, max) {
     var randomNum = Math.random() * (max - min) + min;
@@ -47,7 +50,7 @@ function createDisplayString(hiddenWord, usersKeyArray) {
 
         var hiddenCharacter = hiddenWord[i];
 
-        var existsInUserKeyArray = usersKeyArray.indexOf(hiddenCharacter);
+        var existsInUserKeyArray = usersKeyArray.indexOf(hiddenCharacter.toLowerCase());
 
         if (hiddenCharacter === " ") {
             toDisplay += " ";
@@ -56,34 +59,76 @@ function createDisplayString(hiddenWord, usersKeyArray) {
             toDisplay += "_ "
         } else {
 
-            toDisplay += hiddenCharacter + " ";
+            toDisplay += hiddenCharacter;
         }
-
-
-
     }
     return toDisplay
 }
 
 function updateGameUI() {
 
-    var guessesLeft = allowedMisses - userMisses;
-    var displayString = createDisplayString(secretPhrase, usersKeyArray);
+    var guessesLeft = getRemainingGueses();
+    var displayString = createDisplayString(app.secretPhrase, app.usersKeyArray);
 
     $("#displayString").text(displayString);
-    $("#wins").text(wins);
-    $("#lettersGuessed").text(usersKeyArray);
+    $("#wins").text(app.wins);
+    $("#lettersGuessed").text(app.usersKeyArray);
     $("#guessesLeft").text(guessesLeft);
 
-    if (gameStarted === true) {
-        ("#welcomeMsg").css("display", "none");
+    if (app.gameStarted === true) {
+        $("#welcomeMsg").css("display", "none");
     }
+}
+
+function getRemainingGueses(){
+    return app.allowedMisses - app.userMisses;
+}
+
+function isCharacterInString(char, string){
+    if(string.indexOf(char) !== -1)
+        return true
+    else
+        return false
+}
+
+function resetGame(){
+    app.usersKeyArray = [];
+    app.userMisses = 0;
+    app.secretPhrase = returnRandElement(app.phrases);
 }
 
 function handleKeyPress(event) {
     var key = event.key;
+    if(app.gameStarted === true){
+        // The game is going on
+        app.usersKeyArray.push(key);
 
-    // WRITE ALL OF YOUR GAME LOGIC HERE
+        // if character is not in string, increase the number of misses
+        if( isCharacterInString(key, app.secretPhrase) === false){
+            app.userMisses++;
+        }
+
+        // game is over
+        if(getRemainingGueses() === 0){
+            alert("You lose!");
+            app.secretPhrase = returnRandElement(app.phrases);
+            resetGame();
+        }
+
+        // check if the user won
+        var displayString = createDisplayString(app.secretPhrase, app.usersKeyArray)
+        if( displayString === app.secretPhrase){
+            alert("You win!");
+            app.wins++;
+            resetGame();
+        }
+
+    }
+    else{
+        // The game has not started
+        app.gameStarted = true;
+        app.secretPhrase = returnRandElement(app.phrases);
+    }
 
     updateGameUI();
 }
