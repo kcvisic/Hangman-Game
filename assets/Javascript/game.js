@@ -29,7 +29,7 @@ app.usersKeyArray = [];
 app.userMisses = 0;
 app.wins = 0;
 app.gameStarted = false;
-app.allowedMisses = 5;
+app.allowedMisses = 10;
 
 function getRandomArbitrary(min, max) {
     var randomNum = Math.random() * (max - min) + min;
