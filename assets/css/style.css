@@ -1,0 +1,33 @@
+body{
+background-color: #F0F0C9;
+}
+#navBarColor {
+  background-color: #6E0E0A;
+}
+#navBar{
+
+  color:#F2BB05;
+}
+#startText{
+
+  display: flex;
+  justify-content: space-around;
+}
+#welcomeMsg{
+    color: #124E78
+}
+.jumbotron{
+  background-color: #F2BB05;
+}
+#wins{
+      color: #D74E09
+}
+#guessesLeft{
+    color: #D74E09
+}
+h4{
+    color: #124E78
+}
+.thumbnail{
+  background-color: #F0F0C9;
+}

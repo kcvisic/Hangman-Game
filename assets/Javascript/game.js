@@ -99,7 +99,10 @@ function resetGame(){
 
 function handleKeyPress(event) {
     var key = event.key;
-    if(app.gameStarted === true){
+    if (! (event.keyCode >= 65 && event.keyCode <= 90) ){
+      ; //pass
+    }
+    else if(app.gameStarted === true){
         // The game is going on
         app.usersKeyArray.push(key);
 
