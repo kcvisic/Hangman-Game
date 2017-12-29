@@ -8,13 +8,10 @@ background-color: #F0F0C9;
 
   color:#F2BB05;
 }
-#startText{
 
-  display: flex;
-  justify-content: space-around;
-}
 #welcomeMsg{
     color: #124E78
+
 }
 .jumbotron{
   background-color: #F2BB05;
@@ -23,7 +20,7 @@ background-color: #F0F0C9;
       color: #D74E09
 }
 #guessesLeft{
-    color: #D74E09
+  color: #D74E09
 }
 h4{
     color: #124E78
