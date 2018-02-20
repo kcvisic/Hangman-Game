@@ -22,3 +22,4 @@ Application was built with
 * Player is allowed 10 misses
 
 ```
+## See it live here: https://hangman-game-kc.herokuapp.com/
